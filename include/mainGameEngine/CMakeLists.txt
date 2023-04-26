@@ -1,8 +1,6 @@
 #mainGameEngine
 add_library(
     mainEngine
-    #export/mainEngineIf.hpp
-    #inc/mainEngine.hpp
     src/MainEngine.cpp
 )
 
