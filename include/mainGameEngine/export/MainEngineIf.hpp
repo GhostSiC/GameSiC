@@ -1,13 +1,18 @@
 #pragma once
 
+
+
 class MainEngineIf
 {
 public:
     // virtual EngineIf() = 0;
-    //virtual ~MainEngineIf() = 0;
-    //virtual print() = 0;
-protected:
+    virtual ~MainEngineIf() {};
+    virtual void initEngine() = 0;
+    virtual void mainLoop() = 0;
 
-private:
-    /* data */
+
+    // MainEngineIf(MainEngineIf&&);
+    // MainEngineIf(const MainEngineIf&);
+    // MainEngineIf& operator=(const MainEngineIf&);
+    // MainEngineIf& operator=(MainEngineIf&&);
 };

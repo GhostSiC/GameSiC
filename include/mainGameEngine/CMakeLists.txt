@@ -1,4 +1,5 @@
 #mainGameEngine
+
 add_library(
     mainEngine
     src/MainEngine.cpp
@@ -14,3 +15,5 @@ target_include_directories(mainEngine PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/export>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>
 )
+
+target_link_libraries(mainEngine PUBLIC sfml-graphics sfml-audio city UI)

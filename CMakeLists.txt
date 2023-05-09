@@ -22,6 +22,7 @@ add_subdirectory(include)
 #add_subdirectory(include/mainGameEngine)
 add_subdirectory(exe)
 
+set_property(TARGET Game PROPERTY CXX_STANDARD 23)
 
 include(CPack)
 
