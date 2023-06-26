@@ -16,4 +16,4 @@ target_include_directories(city PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>
 )
 
-target_link_libraries(city PUBLIC sfml-graphics sfml-audio UI)
+target_link_libraries(city PUBLIC sfml-audio UI)

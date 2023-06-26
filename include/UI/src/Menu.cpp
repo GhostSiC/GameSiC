@@ -1,6 +1,8 @@
 
 #include <Menu.hpp>
 
+#include <Button.hpp>
+
 #include <iostream>
 
 
@@ -13,9 +15,9 @@ void Menu::initMenu()
 {
   shape = std::make_shared<sf::RectangleShape>(sf::Vector2f(2000.f, 2000.f));
   
-  shape->setFillColor(sf::Color(186,85,211));
+  shape->setFillColor(sf::Color(0,85,211));
 
-  m_upExitButton = std::make_unique<Button>(sf::Vector2f(100.f, 50.f));
+  //m_upExitButton = std::make_unique<Button>("Test", sf::Vector2f(100.f, 50.f));
 
 }
 
@@ -25,7 +27,7 @@ void Menu::draw(sf::RenderTarget &target, sf::RenderStates states) const
   target.draw(*shape);
 
 
-  m_upExitButton->draw(target, sf::RenderStates::Default);
+  //m_upExitButton->draw(target, sf::RenderStates::Default);
 }
 
 void Menu::poolEvents()

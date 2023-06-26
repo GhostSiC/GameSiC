@@ -9,7 +9,7 @@
 #include <DrawableManagerIf.hpp>
 #include <PoolEventsIf.hpp>
 
-#include <Button.hpp>
+class Button;
 
 class Menu : public MenuIf, public DrawableManagerIf, public PoolEventsIf
 {

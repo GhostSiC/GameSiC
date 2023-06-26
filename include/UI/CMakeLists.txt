@@ -18,4 +18,4 @@ target_include_directories(UI PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>
 )
 
-target_link_libraries(UI PUBLIC sfml-graphics sfml-audio mainEngine)
+target_link_libraries(UI PUBLIC sfml-graphics mainEngine) # TODO: delete sfml-graphics only in mainEngine

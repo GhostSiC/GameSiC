@@ -100,39 +100,10 @@ include/UI/CMakeFiles/UI.dir/src/StartMenu.cpp.obj: \
  C:/msys64/mingw64/include/c++/12.2.0/pstl/glue_memory_defs.h \
  C:/msys64/mingw64/include/c++/12.2.0/pstl/execution_defs.h \
  C:/game/GhostSiC/include/UI/export/StartMenuIf.hpp \
- C:/game/GhostSiC/include/mainGameEngine/export/DrawableManagerIf.hpp \
- C:/msys64/mingw64/include/SFML/Graphics/Drawable.hpp \
- C:/msys64/mingw64/include/SFML/Graphics/Export.hpp \
- C:/msys64/mingw64/include/SFML/Config.hpp \
- C:/msys64/mingw64/include/SFML/Graphics/RenderStates.hpp \
- C:/msys64/mingw64/include/SFML/Graphics/BlendMode.hpp \
- C:/msys64/mingw64/include/SFML/Graphics/Transform.hpp \
- C:/msys64/mingw64/include/SFML/Graphics/Rect.hpp \
- C:/msys64/mingw64/include/SFML/System/Vector2.hpp \
- C:/msys64/mingw64/include/SFML/System/Vector2.inl \
- C:/msys64/mingw64/include/c++/12.2.0/algorithm \
- C:/msys64/mingw64/include/c++/12.2.0/bits/stl_algo.h \
- C:/msys64/mingw64/include/c++/12.2.0/bits/algorithmfwd.h \
- C:/msys64/mingw64/include/c++/12.2.0/initializer_list \
- C:/msys64/mingw64/include/c++/12.2.0/bits/stl_heap.h \
- C:/msys64/mingw64/include/c++/12.2.0/bits/uniform_int_dist.h \
- C:/msys64/mingw64/include/c++/12.2.0/cstdlib \
- C:/msys64/mingw64/include/stdlib.h \
- C:/msys64/mingw64/include/sec_api/stdlib_s.h \
- C:/msys64/mingw64/include/c++/12.2.0/stdlib.h \
- C:/msys64/mingw64/include/malloc.h \
- C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.2.0/include/mm_malloc.h \
- C:/msys64/mingw64/include/c++/12.2.0/bits/std_abs.h \
- C:/msys64/mingw64/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
- C:/msys64/mingw64/include/SFML/Graphics/Rect.inl \
- C:/msys64/mingw64/include/c++/12.2.0/vector \
- C:/msys64/mingw64/include/c++/12.2.0/bits/stl_vector.h \
- C:/msys64/mingw64/include/c++/12.2.0/bits/stl_bvector.h \
- C:/msys64/mingw64/include/c++/12.2.0/bits/range_access.h \
- C:/msys64/mingw64/include/c++/12.2.0/bits/vector.tcc \
  C:/msys64/mingw64/include/SFML/Graphics.hpp \
  C:/msys64/mingw64/include/SFML/Window.hpp \
  C:/msys64/mingw64/include/SFML/System.hpp \
+ C:/msys64/mingw64/include/SFML/Config.hpp \
  C:/msys64/mingw64/include/SFML/System/Clock.hpp \
  C:/msys64/mingw64/include/SFML/System/Export.hpp \
  C:/msys64/mingw64/include/SFML/System/Time.hpp \
@@ -153,10 +124,19 @@ include/UI/CMakeFiles/UI.dir/src/StartMenu.cpp.obj: \
  C:/msys64/mingw64/include/c++/12.2.0/string \
  C:/msys64/mingw64/include/c++/12.2.0/bits/ostream_insert.h \
  C:/msys64/mingw64/include/c++/12.2.0/bits/cxxabi_forced.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/range_access.h \
+ C:/msys64/mingw64/include/c++/12.2.0/initializer_list \
  C:/msys64/mingw64/include/c++/12.2.0/bits/basic_string.h \
  C:/msys64/mingw64/include/c++/12.2.0/string_view \
  C:/msys64/mingw64/include/c++/12.2.0/bits/string_view.tcc \
  C:/msys64/mingw64/include/c++/12.2.0/ext/string_conversions.h \
+ C:/msys64/mingw64/include/c++/12.2.0/cstdlib \
+ C:/msys64/mingw64/include/stdlib.h \
+ C:/msys64/mingw64/include/sec_api/stdlib_s.h \
+ C:/msys64/mingw64/include/c++/12.2.0/stdlib.h \
+ C:/msys64/mingw64/include/malloc.h \
+ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.2.0/include/mm_malloc.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/std_abs.h \
  C:/msys64/mingw64/include/c++/12.2.0/cstdio \
  C:/msys64/mingw64/include/c++/12.2.0/cerrno \
  C:/msys64/mingw64/include/c++/12.2.0/bits/charconv.h \
@@ -186,6 +166,12 @@ include/UI/CMakeFiles/UI.dir/src/StartMenu.cpp.obj: \
  C:/msys64/mingw64/include/SFML/System/Sleep.hpp \
  C:/msys64/mingw64/include/SFML/System/String.hpp \
  C:/msys64/mingw64/include/SFML/System/Utf.hpp \
+ C:/msys64/mingw64/include/c++/12.2.0/algorithm \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/stl_algo.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/algorithmfwd.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/stl_heap.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/uniform_int_dist.h \
+ C:/msys64/mingw64/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
  C:/msys64/mingw64/include/c++/12.2.0/locale \
  C:/msys64/mingw64/include/c++/12.2.0/bits/locale_facets_nonio.h \
  C:/msys64/mingw64/include/c++/12.2.0/ctime \
@@ -203,6 +189,8 @@ include/UI/CMakeFiles/UI.dir/src/StartMenu.cpp.obj: \
  C:/msys64/mingw64/include/SFML/System/ThreadLocal.hpp \
  C:/msys64/mingw64/include/SFML/System/ThreadLocalPtr.hpp \
  C:/msys64/mingw64/include/SFML/System/ThreadLocalPtr.inl \
+ C:/msys64/mingw64/include/SFML/System/Vector2.hpp \
+ C:/msys64/mingw64/include/SFML/System/Vector2.inl \
  C:/msys64/mingw64/include/SFML/System/Vector3.hpp \
  C:/msys64/mingw64/include/SFML/System/Vector3.inl \
  C:/msys64/mingw64/include/SFML/Window/Clipboard.hpp \
@@ -218,11 +206,22 @@ include/UI/CMakeFiles/UI.dir/src/StartMenu.cpp.obj: \
  C:/msys64/mingw64/include/SFML/Window/Sensor.hpp \
  C:/msys64/mingw64/include/SFML/Window/Touch.hpp \
  C:/msys64/mingw64/include/SFML/Window/VideoMode.hpp \
+ C:/msys64/mingw64/include/c++/12.2.0/vector \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/stl_vector.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/stl_bvector.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/vector.tcc \
  C:/msys64/mingw64/include/SFML/Window/Window.hpp \
  C:/msys64/mingw64/include/SFML/Window/WindowHandle.hpp \
  C:/msys64/mingw64/include/SFML/Window/WindowStyle.hpp \
+ C:/msys64/mingw64/include/SFML/Graphics/BlendMode.hpp \
+ C:/msys64/mingw64/include/SFML/Graphics/Export.hpp \
  C:/msys64/mingw64/include/SFML/Graphics/CircleShape.hpp \
  C:/msys64/mingw64/include/SFML/Graphics/Shape.hpp \
+ C:/msys64/mingw64/include/SFML/Graphics/Drawable.hpp \
+ C:/msys64/mingw64/include/SFML/Graphics/RenderStates.hpp \
+ C:/msys64/mingw64/include/SFML/Graphics/Transform.hpp \
+ C:/msys64/mingw64/include/SFML/Graphics/Rect.hpp \
+ C:/msys64/mingw64/include/SFML/Graphics/Rect.inl \
  C:/msys64/mingw64/include/SFML/Graphics/Transformable.hpp \
  C:/msys64/mingw64/include/SFML/Graphics/VertexArray.hpp \
  C:/msys64/mingw64/include/SFML/Graphics/Vertex.hpp \
@@ -250,7 +249,13 @@ include/UI/CMakeFiles/UI.dir/src/StartMenu.cpp.obj: \
  C:/msys64/mingw64/include/SFML/Graphics/Sprite.hpp \
  C:/msys64/mingw64/include/SFML/Graphics/Text.hpp \
  C:/msys64/mingw64/include/SFML/Graphics/VertexBuffer.hpp \
+ C:/game/GhostSiC/include/mainGameEngine/export/DrawableManagerIf.hpp \
  C:/game/GhostSiC/include/mainGameEngine/export/PoolEventsIf.hpp \
+ C:/game/GhostSiC/include/UI/inc/Button.hpp \
+ C:/game/GhostSiC/include/UI/export/ButtonIf.hpp \
+ C:/game/GhostSiC/include/mainGameEngine/inc/ButtonManager.hpp \
  C:/msys64/mingw64/include/c++/12.2.0/iostream \
  C:/msys64/mingw64/include/c++/12.2.0/istream \
- C:/msys64/mingw64/include/c++/12.2.0/bits/istream.tcc
+ C:/msys64/mingw64/include/c++/12.2.0/bits/istream.tcc \
+ C:/game/GhostSiC/include/mainGameEngine/inc/AssetsMenager.hpp \
+ C:/game/GhostSiC/include/mainGameEngine/export/AssetsMenagerIf.hpp

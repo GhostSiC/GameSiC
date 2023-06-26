@@ -1,7 +1,8 @@
-
 #include <MainEngine.hpp>
 
-#include <City.hpp>
+#include <Menu.hpp>
+#include <StartMenu.hpp>
+#include <AssetsMenager.hpp>
 
 #include <iostream>
 
@@ -14,18 +15,23 @@ class testIf
 class AAAAf
 {
   public:
-  virtual void AAAAAf() const = 0;
+  int AAAAAf(){ return 3; };
+
+  private:
+  int* ptr = new int(53);
 };
 
-class test : public testIf, public AAAAf
+class test
 {
   public:
-  test(int a) : a(a) { std::cout << "test()\n"; };
+  test(std::shared_ptr<AAAAf> af) {  aaaaf = af; b = aaaaf->AAAAAf(); };
   ~test(){ std::cout << "~test()\n"; };
-  void func() const override { std::cout << "testIf(): " << a << std::endl; };
-  void AAAAAf() const override { std::cout << "AAAAAf(): " << a << std::endl; };
-  std::unique_ptr<int> b;
-  int a;
+
+  void print() { std::cout << b << '\n'; }
+  //void func() const override { std::cout << "testIf(): " << a << std::endl; };
+  //void AAAAAf() const override { std::cout << "AAAAAf(): " << a << std::endl; };
+  int b;
+  std::shared_ptr<AAAAf> aaaaf;
 };
 
 MainEngine::MainEngine() :
@@ -33,7 +39,9 @@ MainEngine::MainEngine() :
 {
   // std::shared_ptr<AAAAf> tes_2;
   // {
-  // std::shared_ptr<test> tes = std::make_shared<test>(3);
+  
+  // std::shared_ptr<test> tes = std::make_shared<test>(tes_2);
+  // tes->print();
   // tes_2 = tes;
   // tes->func();
   // }
@@ -43,19 +51,25 @@ MainEngine::MainEngine() :
   m_spWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "SFML window");
   m_spView = std::make_shared<sf::View>(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
 
+  m_texture = std::make_unique<sf::Texture>();
+
+  m_spAssetsMenager = std::make_shared<AssetsMenager>();
+  sp_mMenu = std::make_shared<Menu>();
+  sp_mStartMenu = std::make_shared<StartMenu>(m_spAssetsMenager);
+  //m_upText = std::make_unique<sf::Text>();
+
   m_spWindow->setView(*m_spView);
-
-
 
 }
 
 void MainEngine::initEngine()
 {
-  sp_mMenu = std::make_shared<Menu>();
-  sp_mStartMenu = std::make_shared<StartMenu>();
-  sp_mMenu->initMenu();
-  sp_mMenu->setActive(true);
 
+
+  sp_mMenu->initMenu();
+  //sp_mMenu->setActive(true);
+  sp_mStartMenu->setActive(true);
+  
   sp_mDrawable.emplace_back(sp_mMenu);
   sp_mDrawable.emplace_back(sp_mStartMenu);
 
@@ -63,6 +77,12 @@ void MainEngine::initEngine()
   shape = std::make_shared<sf::RectangleShape>(sf::Vector2f(2000.f, 2000.f));
   
   shape->setFillColor(sf::Color(75,0,130));
+
+  // if (!m_texture->loadFromFile("../assets/font/buttons.png"))
+  // {
+  //   std::cout << "Failed to load texture!" << std::endl;
+  //   exit(1);
+  // }
   
   mainLoop();
 }
