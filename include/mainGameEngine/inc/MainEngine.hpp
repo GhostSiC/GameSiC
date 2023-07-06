@@ -8,13 +8,14 @@
 #include <SFML/Graphics.hpp>
 
 #include <DrawableManagerIf.hpp>
-#include <PoolEventsIf.hpp>
+#include <EventHandlerIf.hpp>
+#include <ButtonManager.hpp>
 
 class Menu;
 class StartMenu; 
 class AssetsMenager;
 
-class MainEngine : public MainEngineIf, public DrawableManagerIf, public PoolEventsIf
+class MainEngine : public MainEngineIf, public DrawableManagerIf, public EventHandlerIf
 {
 public:
   MainEngine();
@@ -32,16 +33,20 @@ public:
   bool getActive() override;
   void setActive(bool active) override;
 
-  void poolEvents() override;
+  void poolEvents(sf::Event& event) override;
 
   //void PopState();
 
   void removeState();
 
 
+
 protected:
 
 private:
+
+  void stateGame();
+
   std::shared_ptr<sf::RenderWindow> m_spWindow;
   std::shared_ptr<sf::View> m_spView;
 
@@ -51,13 +56,14 @@ private:
   std::shared_ptr<StartMenu> sp_mStartMenu;
 
   std::vector<std::shared_ptr<DrawableManagerIf>> sp_mDrawable;
+  std::vector<std::shared_ptr<EventHandlerIf>> sp_mPoolEvents;
 
   bool isActive;
 
   std::shared_ptr<sf::RectangleShape> shape;
 
   std::unique_ptr<sf::Texture> m_texture;
-  //std::unique_ptr<DrawableManagerIf> sp_mDrawable;
 
-  //std::unique_ptr<sf::Text> m_upText;
+  std::shared_ptr<StateOfGame> sp_mStateGame;
+
 };

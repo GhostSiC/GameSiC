@@ -250,9 +250,18 @@ include/UI/CMakeFiles/UI.dir/src/StartMenu.cpp.obj: \
  C:/msys64/mingw64/include/SFML/Graphics/Text.hpp \
  C:/msys64/mingw64/include/SFML/Graphics/VertexBuffer.hpp \
  C:/game/GhostSiC/include/mainGameEngine/export/DrawableManagerIf.hpp \
- C:/game/GhostSiC/include/mainGameEngine/export/PoolEventsIf.hpp \
+ C:/game/GhostSiC/include/mainGameEngine/export/EventHandlerIf.hpp \
  C:/game/GhostSiC/include/UI/inc/Button.hpp \
  C:/game/GhostSiC/include/UI/export/ButtonIf.hpp \
+ C:/msys64/mingw64/include/c++/12.2.0/functional \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/std_function.h \
+ C:/msys64/mingw64/include/c++/12.2.0/unordered_map \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/hashtable.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/hashtable_policy.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/enable_special_members.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/unordered_map.h \
+ C:/msys64/mingw64/include/c++/12.2.0/array \
+ C:/msys64/mingw64/include/c++/12.2.0/compare \
  C:/game/GhostSiC/include/mainGameEngine/inc/ButtonManager.hpp \
  C:/msys64/mingw64/include/c++/12.2.0/iostream \
  C:/msys64/mingw64/include/c++/12.2.0/istream \

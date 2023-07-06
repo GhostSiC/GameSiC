@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Site BuildName="Win32-mingw32-make"
-	BuildStamp="20230626-1639-Experimental"
+	BuildStamp="20230628-1736-Experimental"
 	Name="DESKTOP-V2PVS6G"
 	Generator="ctest-3.26.3"
 	CompilerName="C:/msys64/mingw64/bin/g++.exe"
@@ -24,11 +24,11 @@
 	ProcessorClockFrequency="4500"
 	>
 	<Testing>
-		<StartDateTime>Jun 26 19:31 [NON-UTF-8-BYTE-0x8C]rodkowoeuropejski czas letni</StartDateTime>
-		<StartTestTime>1687800689</StartTestTime>
+		<StartDateTime>Jun 28 20:03 [NON-UTF-8-BYTE-0x8C]rodkowoeuropejski czas letni</StartDateTime>
+		<StartTestTime>1687975382</StartTestTime>
 		<TestList/>
-		<EndDateTime>Jun 26 19:31 [NON-UTF-8-BYTE-0x8C]rodkowoeuropejski czas letni</EndDateTime>
-		<EndTestTime>1687800689</EndTestTime>
+		<EndDateTime>Jun 28 20:03 [NON-UTF-8-BYTE-0x8C]rodkowoeuropejski czas letni</EndDateTime>
+		<EndTestTime>1687975382</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

@@ -30,7 +30,7 @@ void Menu::draw(sf::RenderTarget &target, sf::RenderStates states) const
   //m_upExitButton->draw(target, sf::RenderStates::Default);
 }
 
-void Menu::poolEvents()
+void Menu::poolEvents(sf::Event& event)
 {
 }
 

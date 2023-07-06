@@ -3,14 +3,15 @@
 #include <ButtonIf.hpp>
 
 #include <memory>
+#include <functional>
 
 #include <SFML/Graphics.hpp>
 
 #include <DrawableManagerIf.hpp>
-#include <PoolEventsIf.hpp>
+#include <EventHandlerIf.hpp>
 #include <ButtonManager.hpp>
 
-class Button : public ButtonIf, public DrawableManagerIf, public PoolEventsIf
+class Button : public ButtonIf, public DrawableManagerIf, public EventHandlerIf
 {
 public:
   Button(TypeButton&& typeOfButton = TypeButton::NONE , std::string&& text = "");
@@ -23,18 +24,26 @@ public:
   void setScale(int scale) override;
   void setFontSize() override;
 
+  bool getActive() override;
+  void setActive(bool active) override;
+  // DrawableManagerIf
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+  // EventHandlerIf
+  //void poolEvents() override;
 
   void setFont(std::shared_ptr<sf::Font> font);
   void setTexture(std::shared_ptr<sf::Texture> texture);
   void setTexture(std::string&& text);
 
-  // DrawableManagerIf
-  bool getActive() override;
-  void setActive(bool active) override;
 
-  // PoolEventsIf
-  void poolEvents() override;
+  void poolEvents(sf::Event& event) override;
+  void setCallBack(std::function<void()>);
+
+  // Sprite
+  sf::FloatRect getGlobalBounds() const;
+
+  TypeButton getTypeButton() const;
 
 private:
   bool isActive;
@@ -51,4 +60,6 @@ private:
   std::shared_ptr<sf::Sprite> m_upBackground;
 
   TypeButton enTypeOfButton;
+
+  std::function<void()> m_fCallBack;
 };

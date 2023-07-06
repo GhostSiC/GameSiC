@@ -6,41 +6,37 @@
 #include <SFML/Graphics.hpp>
 
 #include <DrawableManagerIf.hpp>
-#include <PoolEventsIf.hpp>
+#include <EventHandlerIf.hpp>
 
 #include <Button.hpp>
+#include <ButtonManager.hpp>
 
 class AssetsMenager;
 
-class StartMenu : public StartMenuIf, public DrawableManagerIf, public PoolEventsIf
+class StartMenu : public StartMenuIf, public DrawableManagerIf, public EventHandlerIf
 {
 public:
   StartMenu(std::shared_ptr<AssetsMenager> spAssetsMenager);
   ~StartMenu() = default;
 
-  // virtual EngineIf() = 0;
-  // virtual ~MainEngineIf() = 0;
   void initStartMenu();
 
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-  void poolEvents() override;
+  void poolEvents(sf::Event& event) override;
   bool getActive() override;
   void setActive(bool active) override;
 
-  //void getState() override;
+  void startNewGame();
+  void exitGame();
 
-
-  // void addState();
-  // void removeState();
-
-  // void Update() override;
-  // void Draw() override;
 private:
-  //std::shared_ptr<sf::RenderWindow> m_spWindow;
+  void initButton();
+  void handleButtonEvent(Button& button);
+
   std::shared_ptr<sf::View> m_spView;
   
-  std::unique_ptr<std::vector<Button>> m_upStartButton;
+  std::unique_ptr<std::vector<Button>> m_upButtons;
   std::shared_ptr<AssetsMenager> m_spAssetsMenager;
   bool isActive;
   

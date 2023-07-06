@@ -7,11 +7,11 @@
 #include <SFML/Graphics.hpp>
 
 #include <DrawableManagerIf.hpp>
-#include <PoolEventsIf.hpp>
+#include <EventHandlerIf.hpp>
 
 class Button;
 
-class Menu : public MenuIf, public DrawableManagerIf, public PoolEventsIf
+class Menu : public MenuIf, public DrawableManagerIf, public EventHandlerIf
 {
 public:
   Menu();
@@ -23,7 +23,7 @@ public:
 
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-  void poolEvents() override;
+  void poolEvents(sf::Event& event) override;
   bool getActive() override;
   void setActive(bool active) override;
 

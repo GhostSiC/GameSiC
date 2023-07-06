@@ -45,6 +45,26 @@ void Button::setTexture(std::string &&text)
   m_text->setString(text);
 }
 
+void Button::poolEvents(sf::Event &event)
+{
+  m_fCallBack();
+}
+
+void Button::setCallBack(std::function<void()> callback)
+{
+  m_fCallBack = callback;
+}
+
+sf::FloatRect Button::getGlobalBounds() const
+{
+  return m_upBackground->getGlobalBounds();
+}
+
+TypeButton Button::getTypeButton() const
+{
+  return enTypeOfButton;
+}
+
 void Button::setText()
 {
 }
@@ -70,9 +90,9 @@ void Button::initFonts()
   m_text->setFillColor(sf::Color::White);
 }
 
-void Button::poolEvents()
-{
-}
+// void Button::poolEvents()
+// {
+// }
 
 bool Button::getActive()
 {
@@ -101,6 +121,14 @@ void Button::setButtonType()
     setOrigin();
     m_text->setPosition(sf::Vector2f(SCREEN_SIZE.x/2 - (m_text->getGlobalBounds().width/2), SCREEN_SIZE.y/5));
     m_upBackground->setPosition(sf::Vector2f(SCREEN_SIZE.x/2, SCREEN_SIZE.y/5));
+    break;
+
+  case TypeButton::SettingsButton:
+    m_upBackground->setTextureRect(sf::IntRect(0,0,397,97));
+    m_text->setString("Ustawienia");
+    setOrigin();
+    m_text->setPosition(sf::Vector2f(SCREEN_SIZE.x/2 - (m_text->getGlobalBounds().width/2), SCREEN_SIZE.y/5 * 3));
+    m_upBackground->setPosition(sf::Vector2f(SCREEN_SIZE.x/2, SCREEN_SIZE.y/5 * 3));
     break;
 
   case TypeButton::ExitButton:
