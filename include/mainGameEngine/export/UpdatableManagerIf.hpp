@@ -10,6 +10,7 @@
 class DrawableManagerIf
 {
 public:
+  virtual ~DrawableManagerIf() = default;
   virtual void Update() = 0;
   virtual bool getActive() = 0;
   virtual void setActive(bool active) = 0;

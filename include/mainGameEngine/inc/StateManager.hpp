@@ -2,36 +2,40 @@
 
 #include <memory>
 #include <vector>
+#include <stack>
 
 #include <SFML/Graphics.hpp>
 
-#include <StateManagerIf>
+#include <StateManagerIf.hpp>
 #include <DrawableManagerIf.hpp>
 #include <EventHandlerIf.hpp>
+
+#include "StateConst.hpp"
 
 class StateManager : public StateManagerIf
 {
 public:
-  StateManager();
-  ~StateManager() = default;
+  StateManager(StateOfGame stateOfGame);
+  ~StateManager() override = default;
 
-  void addState();
-  void getState();
+  StateManager(StateManager&& ) = delete;
+  StateManager(const StateManager& ) = delete;
+  StateManager& operator=(const StateManager& ) = delete;
+  StateManager& operator=(StateManager&& ) = delete;
 
-  void setDrawState();
-  void getDrawState();
+  void addState(StateOfGame&& stateOfGame) override;
+  std::stack<StateOfGame> getState() override;
 
-  void setEventState();
-  void getEventState();
+  StateOfGame top() override;
+  void pop() override;
 
-  void deleteState();
-
+  void deleteState() override;
 
 private:
 
-  std::vector<std::shared_ptr<DrawableManagerIf>> sp_mDrawable;
-  std::vector<std::shared_ptr<EventHandlerIf>> sp_mPoolEvents;
+  std::stack<StateOfGame> m_stateOfGame; 
 
+  //isActive()
 
 
 };

@@ -1,69 +1,36 @@
 #include <MainEngine.hpp>
 
-#include <Menu.hpp>
 #include <StartMenu.hpp>
 #include <AssetsMenager.hpp>
+#include <StateManager.hpp>
 
 #include <iostream>
 
-class testIf
-{
-  public:
-  virtual void func() const = 0;
-};
-
-class AAAAf
-{
-  public:
-  int AAAAAf(){ return 3; };
-
-  private:
-  int* ptr = new int(53);
-};
-
-class test
-{
-  public:
-  test(std::shared_ptr<AAAAf> af) {  aaaaf = af; b = aaaaf->AAAAAf(); };
-  ~test(){ std::cout << "~test()\n"; };
-
-  void print() { std::cout << b << '\n'; }
-  //void func() const override { std::cout << "testIf(): " << a << std::endl; };
-  //void AAAAAf() const override { std::cout << "AAAAAf(): " << a << std::endl; };
-  int b;
-  std::shared_ptr<AAAAf> aaaaf;
-};
-
 MainEngine::MainEngine() :
-  isActive{true}
+  m_drawableStatus{true},
+  m_eventStatus{true},
+  m_mainEngineStatus{true}
 {
-
   m_spWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "SFML window");
   m_spView = std::make_shared<sf::View>(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
-
-  m_texture = std::make_unique<sf::Texture>();
+  m_spWindow->setView(*m_spView);
 
   m_spAssetsMenager = std::make_shared<AssetsMenager>();
-  sp_mMenu = std::make_shared<Menu>();
-  sp_mStartMenu = std::make_shared<StartMenu>(m_spAssetsMenager);
-  sp_mStateGame = std::make_shared<StateOfGame>(StateOfGame::MainMenu);
 
-  m_spWindow->setView(*m_spView);
-}
-
-void MainEngine::initEngine()
-{
-
-  sp_mMenu->initMenu();
+  up_mStateGameTop = StateOfGame::None;
+  sp_mStateGame = std::make_shared<StateManager>(StateOfGame::MainMenu);
   
-  sp_mDrawable.emplace_back(sp_mMenu);
-  sp_mDrawable.emplace_back(sp_mStartMenu);
-  sp_mPoolEvents.emplace_back(sp_mStartMenu);
-
 
   shape = std::make_shared<sf::RectangleShape>(sf::Vector2f(2000.f, 2000.f));
   
   shape->setFillColor(sf::Color(75,0,130));
+
+
+  std::shared_ptr<StartMenu> sp_mStartMenu = std::make_shared<StartMenu>(m_spAssetsMenager, sp_mStateGame);
+  m_spDrawableManager = sp_mStartMenu;
+  m_spEventHandler = sp_mStartMenu;
+  m_spMainLoopHandler = sp_mStartMenu;
+  sp_mStartMenu->setStatus(true);
   
   mainLoop();
 }
@@ -73,7 +40,12 @@ void MainEngine::mainLoop()
   sf::Event event;
   while (m_spWindow->isOpen())
   {
-    stateGame();
+    //stateGame();
+    //for(auto& mainLoopHandler : m_spMainLoopHandler){
+    // if(m_spMainLoopHandler->getMainEngineStatus())
+    // {
+      m_spMainLoopHandler->mainLoop();
+    // }
     poolEvents(event);
 
     draw(*m_spWindow, sf::RenderStates::Default);
@@ -87,25 +59,47 @@ void MainEngine::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
   target.draw(*shape);
   
-  for(const auto& drawable : sp_mDrawable)
-  {
-    if(drawable->getActive())
-    {
-      drawable->draw(target, sf::RenderStates::Default);
-    }
-  }
+
+  m_spDrawableManager->draw(target, sf::RenderStates::Default);
 
   m_spWindow->display();
 }
 
-bool MainEngine::getActive()
+void MainEngine::setStatus(bool status)
 {
-  return true;
+  m_drawableStatus = status;
+  m_eventStatus = status;
+  m_mainEngineStatus = status;
 }
 
-void MainEngine::setActive(bool active)
+bool MainEngine::getDrawableStatus()
 {
-  isActive = active;
+  return m_drawableStatus;
+}
+
+void MainEngine::setDrawableStatus(bool status)
+{
+  m_drawableStatus = status;
+}
+
+bool MainEngine::getEventStatus()
+{
+  return m_eventStatus;
+}
+
+void MainEngine::setEventStatus(bool status)
+{
+  m_eventStatus = status;
+}
+
+bool MainEngine::getMainEngineStatus()
+{
+  return m_mainEngineStatus;
+}
+
+void MainEngine::setMainEngineStatus(bool status)
+{
+  m_mainEngineStatus = status;
 }
 
 void MainEngine::poolEvents(sf::Event& event)
@@ -115,22 +109,39 @@ void MainEngine::poolEvents(sf::Event& event)
     if (event.type == sf::Event::Closed)
       m_spWindow->close();
 
-    for(const auto& poolEvent : sp_mPoolEvents)
-    {
-      if(poolEvent->getActive())
-      {
-        poolEvent->poolEvents(event);
-      }
-    }
 
+      m_spEventHandler->poolEvents(event);
   }
 }
 
 void MainEngine::stateGame()
 {
-  sp_mStartMenu->setActive(true);
+  if(auto stateGameTop = sp_mStateGame->getState().top(); stateGameTop != up_mStateGameTop){
+    switch (stateGameTop)
+    {
+    case StateOfGame::MainMenu: {
+        //
+        
+      break;
+    }
+    case StateOfGame::Game : {
+        // auto sp_mStartMenu = std::make_shared<Menu>();
+        // m_spDrawableManager = sp_mStartMenu;
+        // m_spEventHandler = sp_mStartMenu;
+        //m_spMainLoopHandler = sp_mStartMenu;
+        //sp_mStartMenu->setActive(true);
+        //sp_mStartMenu->setStatus(true);
+        
+      break;
+    }
+    
+    default:{
+      break;
+    }
+    }
 
-
+    up_mStateGameTop = stateGameTop;
+  }
 }
 
 // void MainEngine::PushState(std::shared_ptr<StateManagerIf>& state)

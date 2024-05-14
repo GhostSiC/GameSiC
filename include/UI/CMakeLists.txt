@@ -3,8 +3,6 @@
 add_library(
     UI
     src/Button.cpp
-    src/Menu.cpp
-    src/StartMenu.cpp
 )
 
 #add_executable(mainEngine src/MainEngine.cpp)

@@ -5,9 +5,10 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <AssetsEngineIf.hpp>
 #include <AssetsMenagerIf.hpp>
 
-class AssetsMenager : public AssetsMenagerIf
+class AssetsMenager : public AssetsEngineIf, public AssetsMenagerIf
 {
 public:
   AssetsMenager();
@@ -21,8 +22,8 @@ public:
   void loadBasicFont() override;
   void loadBasicTexture() override;
 
-  std::shared_ptr<sf::Font> getBasicFont();
-  std::shared_ptr<sf::Texture> getBasicTexture();
+  std::shared_ptr<sf::Font> getBasicFont() override;
+  std::shared_ptr<sf::Texture> getBasicTexture() override;
 
 protected:
 

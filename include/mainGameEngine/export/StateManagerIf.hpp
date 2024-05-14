@@ -2,35 +2,25 @@
 
 #include <memory>
 #include <vector>
+#include <stack>
 
-#include <SFML/Graphics.hpp>
-
+enum class StateOfGame : int16_t;
 
 class StateManagerIf
 {
 public:
   virtual ~StateManagerIf() = default;
 
-  virtual void addState() = 0;
-  virtual void getState() = 0;
+  virtual void addState(StateOfGame&&) = 0;
 
-  virtual void setDrawState() = 0;
-  virtual void getDrawState() = 0;
-
-  virtual void setEventState() = 0;
-  virtual void getEventState() = 0;
+  // Get stack
+  virtual std::stack<StateOfGame> getState() = 0;
+  
+  //Get element on top
+  virtual StateOfGame top() = 0;
+  
+  // Delete element on top
+  virtual void pop() = 0;
 
   virtual void deleteState() = 0;
-
-protected:
-  StateManagerIf(StateManagerIf&& ) = delete;
-  StateManagerIf(const StateManagerIf& ) = delete;
-  StateManagerIf& operator=(const StateManagerIf& ) = delete;
-  StateManagerIf& operator=(StateManagerIf&& ) = delete;
-
-// private:
-
-//   std::vector<std::shared_ptr<DrawableManagerIf>> sp_mDrawable;
-//   std::vector<std::shared_ptr<EventHandlerIf>> sp_mPoolEvents;
-
 };

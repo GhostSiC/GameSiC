@@ -1,33 +1,32 @@
 #include "StateManager.hpp"
 
-StateManager::StateManager()
+StateManager::StateManager(StateOfGame stateOfGame)
 {
+    m_stateOfGame.push(stateOfGame);
 }
 
-void StateManager::addState()
+void StateManager::addState(StateOfGame&& stateOfGame)
 {
+    m_stateOfGame.push(stateOfGame);
 }
 
-void StateManager::getState()
+std::stack<StateOfGame> StateManager::getState()
 {
+    return m_stateOfGame;
 }
 
-void StateManager::setDrawState()
+StateOfGame StateManager::top()
 {
+    return m_stateOfGame.top();
 }
 
-void StateManager::getDrawState()
+void StateManager::pop()
 {
+    m_stateOfGame.pop();
 }
 
-void StateManager::setEventState()
-{
-}
-
-void StateManager::getEventState()
-{
-}
-
+// TODO: zrobic cos z tym?
 void StateManager::deleteState()
 {
+    //m_stateOfGame;
 }

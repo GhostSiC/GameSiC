@@ -1,6 +1,7 @@
 
 add_subdirectory(mainGameEngine)
 add_subdirectory(UI)
+add_subdirectory(gui)
 add_subdirectory(city)
 
 #target_include_directories(mainEngine PUBLIC 

@@ -9,11 +9,12 @@
 
 #include <DrawableManagerIf.hpp>
 #include <EventHandlerIf.hpp>
-#include <ButtonManager.hpp>
+#include <StateConst.hpp>
 
 class Menu;
 class StartMenu; 
 class AssetsMenager;
+class StateManagerIf;
 
 class MainEngine : public MainEngineIf, public DrawableManagerIf, public EventHandlerIf
 {
@@ -26,44 +27,41 @@ public:
   MainEngine& operator=(const MainEngine& ) = delete;
   MainEngine& operator=(MainEngine&& ) = delete;
 
-  void initEngine() override;
   void mainLoop() override;
 
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-  bool getActive() override;
-  void setActive(bool active) override;
+  void setStatus(bool status) override;
+  bool getDrawableStatus() override;
+  void setDrawableStatus(bool status) override;
+  bool getEventStatus() override;
+  void setEventStatus(bool status) override;
+  bool getMainEngineStatus() override;
+  void setMainEngineStatus(bool status) override;
 
   void poolEvents(sf::Event& event) override;
-
-  //void PopState();
-
-  void removeState();
-
-
 
 protected:
 
 private:
-
-  void stateGame();
+  bool m_drawableStatus;
+  bool m_eventStatus;
+  bool m_mainEngineStatus;
 
   std::shared_ptr<sf::RenderWindow> m_spWindow;
   std::shared_ptr<sf::View> m_spView;
 
+  std::shared_ptr<DrawableManagerIf> m_spDrawableManager;
+  std::shared_ptr<EventHandlerIf> m_spEventHandler;
+  std::shared_ptr<MainEngineIf> m_spMainLoopHandler;
+
   std::shared_ptr<AssetsMenager> m_spAssetsMenager;
 
-  std::shared_ptr<Menu> sp_mMenu;
-  std::shared_ptr<StartMenu> sp_mStartMenu;
-
-  std::vector<std::shared_ptr<DrawableManagerIf>> sp_mDrawable;
-  std::vector<std::shared_ptr<EventHandlerIf>> sp_mPoolEvents;
-
-  bool isActive;
+  std::shared_ptr<StateManagerIf> sp_mStateGame;
+  StateOfGame up_mStateGameTop;
 
   std::shared_ptr<sf::RectangleShape> shape;
 
-  std::unique_ptr<sf::Texture> m_texture;
+  // Functions
 
-  std::shared_ptr<StateOfGame> sp_mStateGame;
-
+  void stateGame();
 };

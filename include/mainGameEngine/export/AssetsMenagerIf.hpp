@@ -10,7 +10,7 @@
 class AssetsMenagerIf
 {
 public:
-
-  virtual void loadBasicFont() = 0;
-  virtual void loadBasicTexture() = 0;
+  virtual ~AssetsMenagerIf() = default;
+  virtual std::shared_ptr<sf::Font> getBasicFont() = 0;
+  virtual std::shared_ptr<sf::Texture> getBasicTexture() = 0;
 };

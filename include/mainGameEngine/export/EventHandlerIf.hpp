@@ -5,7 +5,8 @@
 class EventHandlerIf
 {
 public:
+  virtual ~EventHandlerIf() = default;
   virtual void poolEvents(sf::Event& event) = 0;
-  virtual bool getActive() = 0;
-  virtual void setActive(bool active) = 0;
+  virtual bool getEventStatus() = 0;
+  virtual void setEventStatus(bool status) = 0;
 };
