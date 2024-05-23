@@ -14,11 +14,12 @@ class AssetsMenagerIf;
 class Button;
 class SettingsMenu;
 class StateManagerIf;
+class SettingsAdvance;
 
 class StartMenu : public StartMenuIf, public MainEngineIf, public DrawableManagerIf, public EventHandlerIf
 {
 public:
-  StartMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std::shared_ptr<StateManagerIf> stateManager);
+  StartMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std::shared_ptr<SettingsAdvance> settingsAdvance, std::shared_ptr<StateManagerIf> stateManager);
   //~StartMenu();
   ~StartMenu() = default;
 

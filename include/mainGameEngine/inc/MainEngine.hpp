@@ -11,10 +11,13 @@
 #include <EventHandlerIf.hpp>
 #include <StateConst.hpp>
 
+#include <SettingsAdvance.hpp>
+
 class Menu;
 class StartMenu; 
 class AssetsMenager;
 class StateManagerIf;
+
 
 class MainEngine : public MainEngineIf, public DrawableManagerIf, public EventHandlerIf
 {
@@ -53,6 +56,8 @@ private:
   std::shared_ptr<DrawableManagerIf> m_spDrawableManager;
   std::shared_ptr<EventHandlerIf> m_spEventHandler;
   std::shared_ptr<MainEngineIf> m_spMainLoopHandler;
+
+  std::shared_ptr<SettingsAdvance> m_spSettingsAdvance;
 
   std::shared_ptr<AssetsMenager> m_spAssetsMenager;
 

@@ -17,8 +17,10 @@ MainEngine::MainEngine() :
 
   m_spAssetsMenager = std::make_shared<AssetsMenager>();
 
-  up_mStateGameTop = StateOfGame::None;
-  sp_mStateGame = std::make_shared<StateManager>(StateOfGame::MainMenu);
+  up_mStateGameTop = StateOfGame::NONE;
+  sp_mStateGame = std::make_shared<StateManager>(StateOfGame::MAIN_MENU);
+
+  m_spSettingsAdvance = std::make_shared<SettingsAdvance>();
   
 
   shape = std::make_shared<sf::RectangleShape>(sf::Vector2f(2000.f, 2000.f));
@@ -26,7 +28,7 @@ MainEngine::MainEngine() :
   shape->setFillColor(sf::Color(75,0,130));
 
 
-  std::shared_ptr<StartMenu> sp_mStartMenu = std::make_shared<StartMenu>(m_spAssetsMenager, sp_mStateGame);
+  std::shared_ptr<StartMenu> sp_mStartMenu = std::make_shared<StartMenu>(m_spAssetsMenager, m_spSettingsAdvance, sp_mStateGame);
   m_spDrawableManager = sp_mStartMenu;
   m_spEventHandler = sp_mStartMenu;
   m_spMainLoopHandler = sp_mStartMenu;
@@ -119,12 +121,12 @@ void MainEngine::stateGame()
   if(auto stateGameTop = sp_mStateGame->getState().top(); stateGameTop != up_mStateGameTop){
     switch (stateGameTop)
     {
-    case StateOfGame::MainMenu: {
+    case StateOfGame::MAIN_MENU: {
         //
         
       break;
     }
-    case StateOfGame::Game : {
+    case StateOfGame::GAME : {
         // auto sp_mStartMenu = std::make_shared<Menu>();
         // m_spDrawableManager = sp_mStartMenu;
         // m_spEventHandler = sp_mStartMenu;

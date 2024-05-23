@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-Button::Button(std::shared_ptr<AssetsMenagerIf> assetsMenager, std::string&& text, TypeButton typeButton) :
+Button::Button(std::shared_ptr<AssetsMenagerIf> assetsMenager) :
   m_drawableStatus{true},
   m_eventStatus{true},
   isActiveAction{true},
@@ -16,12 +16,7 @@ Button::Button(std::shared_ptr<AssetsMenagerIf> assetsMenager, std::string&& tex
 
   m_text = std::make_shared<sf::Text>();
 
-  m_text->setString(text);
-
   std::cout << "create button\n";
-
-  initFonts();
-  initButtonPreSetting(typeButton);
 }
 
 Button::~Button()
@@ -49,17 +44,20 @@ void Button::setTexture(std::shared_ptr<sf::Texture> texture)
   m_upBackground->setTexture(*texture);
 }
 
-void Button::setTextureRect(sf::IntRect&& intRect)
+void Button::setTextureRect(const sf::IntRect& intRect)
 {
   m_upBackground->setTextureRect(intRect);
 }
 
 void Button::poolEvents(sf::Event &event)
 {
-  sf::Vector2f mousePosition = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
-  if (getGlobalBounds().contains(mousePosition))
+  if(isActiveAction)
   {
-    m_fCallBack();
+  sf::Vector2f mousePosition = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
+    if (getGlobalBounds().contains(mousePosition))
+    {
+      m_fCallBack();
+    }
   }
 }
 
@@ -73,50 +71,30 @@ sf::FloatRect Button::getGlobalBounds() const
   return m_upBackground->getGlobalBounds();
 }
 
-void Button::setText(std::string&& text)
+void Button::setText(const std::string& text)
 {
   m_text->setString(text);
+  centerText();
 }
 
 void Button::setSize()
 {
 }
 
-void Button::setScale(int scale)
+void Button::setScale(const sf::Vector2f& scale)
 {
-  m_upBackground->setScale(3,1);
-
+  m_upBackground->setScale(scale);
 }
 
-void Button::setFontSize()
+void Button::setFontSize(sf::Vector2f scale)
 {
+  m_text->setScale(scale);
 }
 
-void Button::initFonts()
+void Button::setFontColor(sf::Color color)
 {
-  m_text->setFont(*m_spAssetsMenager->getBasicFont()); // TODO: delte?
-  m_text->setCharacterSize(32);
-  m_text->setFillColor(sf::Color::White);
+  m_text->setFillColor(color);
 }
-
-void Button::initButtonPreSetting(TypeButton typeButton)
-{
-  switch (typeButton)
-  {
-  case TypeButton::NORMAL:
-  {
-    setTexture(m_spAssetsMenager->getBasicTexture());
-    setTextureRect(sf::IntRect(0,0,397,97));
-    break;
-  }
-  default:
-    break;
-  }
-}
-
-// void Button::poolEvents()
-// {
-// }
 
 bool Button::getDrawableStatus()
 {
@@ -154,21 +132,22 @@ void Button::setOrigin()
   m_upBackground->setOrigin(sf::Vector2f(m_upBackground->getTextureRect().width/2, m_upBackground->getTextureRect().height/2));
 }
 
-void Button::setPosition(sf::Vector2f&& position)
+void Button::setPosition(const sf::Vector2f& position)
 {
   //setOrigin();
   m_upBackground->setOrigin(sf::Vector2f(m_upBackground->getTextureRect().width/2, m_upBackground->getTextureRect().height/2));
   //m_text->setPosition(sf::Vector2f(SCREEN_SIZE.x/2 - (m_text->getGlobalBounds().width/2), SCREEN_SIZE.y/5));
   m_upBackground->setPosition(position);
 
-  centerText(position);
+  centerText();
 }
 
 // TODO: zastanow sie jak zrobic text oraz ustawic go na srodek ekranu
-void Button::centerText(sf::Vector2f& position)
+void Button::centerText()
 {
+  auto position{m_upBackground->getPosition()};
   sf::FloatRect textBounds = m_text->getLocalBounds();
-  std::cout << "Text size: " << textBounds.width << " x " << textBounds.height << std::endl;
+  //std::cout << "Text size: " << textBounds.width << " x " << textBounds.height << std::endl;
 
   //m_text->setOrigin(sf::Vector2f(m_text->getGlobalBounds().left/2, m_text->getGlobalBounds().height/2));
   m_text->setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
@@ -177,35 +156,3 @@ void Button::centerText(sf::Vector2f& position)
 
   //m_text->setPosition(sf::Vector2f(SCREEN_SIZE.x/2 - (m_text->getGlobalBounds().width/2), SCREEN_SIZE.y/5));
 }
-
-
-
-// void Button::setButtonType()
-// {
-//   switch (enTypeOfButton)
-//   {
-//   case TypeButton::StartButton:
-//     // m_upBackground->setTextureRect(sf::IntRect(0,0,397,97));
-//     //setOrigin();
-//     // m_text->setPosition(sf::Vector2f(SCREEN_SIZE.x/2 - (m_text->getGlobalBounds().width/2), SCREEN_SIZE.y/5));
-//     // m_upBackground->setPosition(sf::Vector2f(SCREEN_SIZE.x/2, SCREEN_SIZE.y/5));
-//     break;
-
-//   case TypeButton::SettingsButton:
-//     m_upBackground->setTextureRect(sf::IntRect(0,0,397,97));
-//     setOrigin();
-//     m_text->setPosition(sf::Vector2f(SCREEN_SIZE.x/2 - (m_text->getGlobalBounds().width/2), SCREEN_SIZE.y/5 * 3));
-//     m_upBackground->setPosition(sf::Vector2f(SCREEN_SIZE.x/2, SCREEN_SIZE.y/5 * 3));
-//     break;
-
-//   case TypeButton::ExitButton:
-//     m_upBackground->setTextureRect(sf::IntRect(0,97,397,97));
-//     setOrigin();
-//     m_text->setPosition(sf::Vector2f(SCREEN_SIZE.x/2 - (m_text->getGlobalBounds().width/2), SCREEN_SIZE.y/5 * 4));
-//     m_upBackground->setPosition(sf::Vector2f(SCREEN_SIZE.x/2, SCREEN_SIZE.y/5 * 4));
-//     break;
-
-//   default:
-//     break;
-//   }
-// }

@@ -1,18 +1,22 @@
 #pragma once
 
+// TODO: delete?
+#include <SFML/Graphics.hpp>
+
 const sf::Vector2f SCREEN_SIZE(1920, 1080);
 
 enum class StateOfGame : int16_t
 {
-  None,
-  Exit,
+  NONE,
+  EXIT,
   // MainMenu States
-  MainMenu,
-  SettingsMenu,
+  MAIN_MENU, 
+  SettingsMenu, 
+  GRAPHIC,
+  AUDIO,
   // MainMenu states end
 
-  Game,
-  Menu
+  GAME
 };
 
 

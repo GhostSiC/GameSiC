@@ -1,40 +1,41 @@
 
 #include <StartMenu.hpp>
 
-#include <SFML/Graphics.hpp>
+#include <vector>
 
-#include <iostream>
+#include <SFML/Graphics.hpp>
 
 #include <AssetsMenager.hpp>
 #include <StateManager.hpp>
-
-#include <StateConst.hpp>
-
-#include <SettingsMenu.hpp>
-
 #include <DrawableManagerIf.hpp>
 #include <EventHandlerIf.hpp>
-
-#include <Button.hpp>
+#include <StateConst.hpp>
 #include <StateManagerIf.hpp>
+
 #include <SettingsMenu.hpp>
+#include <Button.hpp>
+#include <SettingsAdvance.hpp>
 
-#include <vector>
+#include <iostream>
 
-StartMenu::StartMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std::shared_ptr<StateManagerIf> stateManager) :
+
+#include <StandardButtonBuilder.hpp>
+
+StartMenu::StartMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std::shared_ptr<SettingsAdvance> settingsAdvance, std::shared_ptr<StateManagerIf> stateManager) :
   m_drawableStatus{false},
   m_eventStatus{false},
   m_mainEngineStatus{false},
-  sp_mLocalState{std::make_shared<StateManager>(StateOfGame::None)},
-  m_spAssetsMenager{spAssetsMenager}, sp_mStateGame{stateManager}
+  sp_mLocalState{std::make_shared<StateManager>(StateOfGame::NONE)},
+  m_spAssetsMenager{spAssetsMenager},
+  sp_mStateGame{stateManager}
 {
   std::cout << "Create StartMen\n";
   //m_upButtons = std::make_unique<std::vector<Button>>();
-  //sp_mStateMenu = std::make_unique<StateManagerIf>(StateOfGame::MainMenu);
-  sp_mLocalState->addState(StateOfGame::MainMenu);
+  //sp_mStateMenu = std::make_unique<StateManagerIf>(StateOfGame::MAIN_MENU);
+  sp_mLocalState->addState(StateOfGame::MAIN_MENU);
 
 
-  up_mSettingsMenu = std::make_shared<SettingsMenu>(spAssetsMenager, sp_mLocalState);
+  up_mSettingsMenu = std::make_shared<SettingsMenu>(spAssetsMenager, settingsAdvance, sp_mLocalState);
   up_mDrawableInstanceManager.emplace_back(up_mSettingsMenu);
   up_mEventInstanceManager.emplace_back(up_mSettingsMenu);
 
@@ -144,7 +145,7 @@ void StartMenu::startNewGame()
   std::cout << "start game\n";
   std::cout << "start game click\n";
   //sp_mStateGame->deleteState();
-  //sp_mStateGame->addState(StateOfGame::Game);
+  //sp_mStateGame->addState(StateOfGame::GAME);
   //m_vButtons.back()->setText("test") ;
 }
 
@@ -164,29 +165,32 @@ void StartMenu::settingsMenu()
 
 void StartMenu::initButton()
 {
-  std::shared_ptr<Button> button = std::make_shared<Button>(m_spAssetsMenager, "Wejdz do gry");
-  button->setCallBack(std::bind(&StartMenu::startNewGame, this));
-  button->setPosition(sf::Vector2f(SCREEN_SIZE.x/8, (SCREEN_SIZE.y/8) * 5));
+  StandardButtonBuilder builder{m_spAssetsMenager};
 
-  
+  std::shared_ptr<Button> button = builder
+    .initText("Wejdz do gry")
+    .initPosition(sf::Vector2f(SCREEN_SIZE.x/8, (SCREEN_SIZE.y/8) * 5))
+    .initCallBack(std::bind(&StartMenu::startNewGame, this))
+    .build();
+
   up_mDrawableManager.emplace_back(button);
   up_mEventHandler.emplace_back(button);
 
-  button.reset();
+  button = builder
+    .initText("Ustawienia")
+    .initPosition(sf::Vector2f(SCREEN_SIZE.x/8, (SCREEN_SIZE.y/8) * 6))
+    .initCallBack(std::bind(&StartMenu::settingsMenu, this))
+    .build();
 
-  button = std::make_shared<Button>(m_spAssetsMenager, "Ustawienia");
-  button->setCallBack(std::bind(&StartMenu::settingsMenu, this));
-  button->setPosition(sf::Vector2f(SCREEN_SIZE.x/8, (SCREEN_SIZE.y/8) * 6));
-  
   up_mDrawableManager.emplace_back(button);
   up_mEventHandler.emplace_back(button);
 
-  button.reset();
+  button = builder
+    .initText("Wyjdz z gry")
+    .initPosition(sf::Vector2f(SCREEN_SIZE.x/8, (SCREEN_SIZE.y/8) * 7))
+    .initCallBack(std::bind(&StartMenu::exitGame, this))
+    .build();
 
-  button = std::make_shared<Button>(m_spAssetsMenager, "Wyjdz z gry");
-  button->setCallBack(std::bind(&StartMenu::exitGame, this));
-  button->setPosition(sf::Vector2f(SCREEN_SIZE.x/8, (SCREEN_SIZE.y/8) * 7));
-  
   up_mDrawableManager.emplace_back(button);
   up_mEventHandler.emplace_back(button);
 }
@@ -195,7 +199,7 @@ void StartMenu::checkState(){
 
   switch (sp_mLocalState->top())
   {
-  case StateOfGame::MainMenu:
+  case StateOfGame::MAIN_MENU:
   {
     setStatus(1);
     

@@ -14,18 +14,19 @@ class AssetsMenagerIf;
 class Button : public ButtonIf, public DrawableManagerIf, public EventHandlerIf
 {
 public:
-  Button(std::shared_ptr<AssetsMenagerIf> assetsMenager, std::string&& text = "", TypeButton typeButton = TypeButton::NORMAL);
+  Button(std::shared_ptr<AssetsMenagerIf> assetsMenager);
   ~Button();
   //~Button() = default;
 
 
   // ButtonIf
-  void setText(std::string&& text) override;
+  void setText(const std::string& text) override;
   void setSize() override;
-  void setScale(int scale) override;
-  void setFontSize() override;
+  void setScale(const sf::Vector2f& scale) override;
+  void setFontSize(sf::Vector2f scale) override;
+  void setFontColor(sf::Color color) override;
   void setOrigin() override;
-  void setPosition(sf::Vector2f&& position) override;
+  void setPosition(const sf::Vector2f& position) override;
 
 
   bool getDrawableStatus() override;
@@ -43,7 +44,7 @@ public:
 
   void setFont(std::shared_ptr<sf::Font> font) override;
   void setTexture(std::shared_ptr<sf::Texture> texture) override;
-  void setTextureRect(sf::IntRect&& intRect) override;
+  void setTextureRect(const sf::IntRect& intRect) override;
   //void setTexture(std::string&& text) override;
 
 
@@ -58,13 +59,7 @@ private:
   bool m_eventStatus;
   bool isActiveAction;
 
-  //std::shared_ptr<AssetsMenager> m_spAssetsMenager;
-
-  void initFonts();
-  void initButtonPreSetting(TypeButton typeButton);
-
-
-  void centerText(sf::Vector2f& position);
+  void centerText();
 
   std::shared_ptr<sf::Font> m_upFont;
   std::shared_ptr<sf::Text> m_text;
