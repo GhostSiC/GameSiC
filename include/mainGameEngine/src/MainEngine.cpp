@@ -1,7 +1,6 @@
 #include <MainEngine.hpp>
 
 #include <StartMenu.hpp>
-#include <AssetsMenager.hpp>
 #include <StateManager.hpp>
 
 #include <iostream>
@@ -15,8 +14,6 @@ MainEngine::MainEngine() :
   m_spView = std::make_shared<sf::View>(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
   m_spWindow->setView(*m_spView);
 
-  m_spAssetsMenager = std::make_shared<AssetsMenager>();
-
   up_mStateGameTop = StateOfGame::NONE;
 
   m_spSettingsAdvance = std::make_shared<SettingsAdvance>();
@@ -28,7 +25,7 @@ MainEngine::MainEngine() :
 
 
   sp_mStateGame = std::make_shared<StateManager>(StateOfGame::MAIN_MENU);
-  std::shared_ptr<StartMenu> sp_mStartMenu = std::make_shared<StartMenu>(m_spAssetsMenager, m_spSettingsAdvance, sp_mStateGame);
+  std::shared_ptr<StartMenu> sp_mStartMenu = std::make_shared<StartMenu>(m_spSettingsAdvance, sp_mStateGame);
   m_spDrawableManager = sp_mStartMenu;
   m_spEventHandler = sp_mStartMenu;
   m_spMainLoopHandler = sp_mStartMenu;
@@ -129,8 +126,6 @@ void MainEngine::stateGame()
     }
     case StateOfGame::GAME : {
       std::cout << "AAAAAAAAAAAA\n";
-        m_spWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(600, 600), "SFML window");
-        m_spWindow->setView(*m_spView);
         sp_mStateGame->addState(StateOfGame::MAIN_MENU);
         // auto sp_mStartMenu = std::make_shared<Menu>();
         // m_spDrawableManager = sp_mStartMenu;

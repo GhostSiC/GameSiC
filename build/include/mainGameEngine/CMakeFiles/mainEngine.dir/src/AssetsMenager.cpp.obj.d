@@ -119,6 +119,17 @@ include/mainGameEngine/CMakeFiles/mainEngine.dir/src/AssetsMenager.cpp.obj: \
   C:/msys64/mingw64/include/c++/13.2.0/bits/memory_resource.h \
   C:/msys64/mingw64/include/c++/13.2.0/cstddef \
   C:/msys64/mingw64/include/c++/13.2.0/bits/uses_allocator_args.h \
+  C:/msys64/mingw64/include/c++/13.2.0/mutex \
+  C:/msys64/mingw64/include/c++/13.2.0/bits/chrono.h \
+  C:/msys64/mingw64/include/c++/13.2.0/ratio \
+  C:/msys64/mingw64/include/c++/13.2.0/cstdint \
+  C:/msys64/mingw64/include/c++/13.2.0/limits \
+  C:/msys64/mingw64/include/c++/13.2.0/ctime \
+  C:/msys64/mingw64/include/c++/13.2.0/bits/parse_numbers.h \
+  C:/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32/bits/error_constants.h \
+  C:/msys64/mingw64/include/c++/13.2.0/cerrno \
+  C:/msys64/mingw64/include/c++/13.2.0/bits/std_mutex.h \
+  C:/msys64/mingw64/include/c++/13.2.0/bits/unique_lock.h \
   C:/msys64/mingw64/include/SFML/Graphics.hpp \
   C:/msys64/mingw64/include/SFML/Window.hpp \
   C:/msys64/mingw64/include/SFML/System.hpp \
@@ -154,12 +165,10 @@ include/mainGameEngine/CMakeFiles/mainEngine.dir/src/AssetsMenager.cpp.obj: \
   C:/msys64/mingw64/lib/clang/18/include/mm_malloc.h \
   C:/msys64/mingw64/include/c++/13.2.0/bits/std_abs.h \
   C:/msys64/mingw64/include/c++/13.2.0/cstdio \
-  C:/msys64/mingw64/include/c++/13.2.0/cerrno \
   C:/msys64/mingw64/include/c++/13.2.0/bits/charconv.h \
   C:/msys64/mingw64/include/c++/13.2.0/bits/basic_string.tcc \
   C:/msys64/mingw64/include/c++/13.2.0/bits/locale_classes.tcc \
   C:/msys64/mingw64/include/c++/13.2.0/system_error \
-  C:/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32/bits/error_constants.h \
   C:/msys64/mingw64/include/c++/13.2.0/stdexcept \
   C:/msys64/mingw64/include/c++/13.2.0/streambuf \
   C:/msys64/mingw64/include/c++/13.2.0/bits/streambuf.tcc \
@@ -190,7 +199,6 @@ include/mainGameEngine/CMakeFiles/mainEngine.dir/src/AssetsMenager.cpp.obj: \
   C:/msys64/mingw64/include/c++/13.2.0/pstl/glue_algorithm_defs.h \
   C:/msys64/mingw64/include/c++/13.2.0/locale \
   C:/msys64/mingw64/include/c++/13.2.0/bits/locale_facets_nonio.h \
-  C:/msys64/mingw64/include/c++/13.2.0/ctime \
   C:/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32/bits/time_members.h \
   C:/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32/bits/messages_members.h \
   C:/msys64/mingw64/include/c++/13.2.0/bits/codecvt.h \

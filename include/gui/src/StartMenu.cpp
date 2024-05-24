@@ -19,12 +19,12 @@
 
 #include <iostream>
 
-StartMenu::StartMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std::shared_ptr<SettingsAdvance> settingsAdvance, std::shared_ptr<StateManagerIf> stateManager) :
+StartMenu::StartMenu(std::shared_ptr<SettingsAdvance> settingsAdvance, std::shared_ptr<StateManagerIf> stateManager) :
   m_drawableStatus{false},
   m_eventStatus{false},
   m_mainEngineStatus{false},
   sp_mLocalState{std::make_shared<StateManager>(StateOfGame::NONE)},
-  m_spAssetsMenager{spAssetsMenager},
+  m_spAssetsMenager{AssetsMenager::getInstance()},
   sp_mStateGame{stateManager}
 {
   std::cout << "Create StartMen\n";
@@ -33,7 +33,7 @@ StartMenu::StartMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std::shar
   sp_mLocalState->addState(StateOfGame::MAIN_MENU);
 
 
-  up_mSettingsMenu = std::make_shared<SettingsMenu>(spAssetsMenager, settingsAdvance, sp_mLocalState);
+  up_mSettingsMenu = std::make_shared<SettingsMenu>(settingsAdvance, sp_mLocalState);
   up_mDrawableInstanceManager.emplace_back(up_mSettingsMenu);
   up_mEventInstanceManager.emplace_back(up_mSettingsMenu);
 
@@ -163,7 +163,7 @@ void StartMenu::settingsMenu()
 
 void StartMenu::initButton()
 {
-  StandardButtonBuilder builder{m_spAssetsMenager};
+  StandardButtonBuilder builder;
 
   std::shared_ptr<Button> button = builder
     .initText("Wejdz do gry")

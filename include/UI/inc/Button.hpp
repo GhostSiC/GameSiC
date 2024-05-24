@@ -9,12 +9,10 @@
 #include <EventHandlerIf.hpp>
 #include <StateConst.hpp>
 
-class AssetsMenagerIf;
-
 class Button : public ButtonIf, public DrawableManagerIf, public EventHandlerIf
 {
 public:
-  Button(std::shared_ptr<AssetsMenagerIf> assetsMenager);
+  Button();
   ~Button();
   //~Button() = default;
 
@@ -63,8 +61,6 @@ private:
 
   std::shared_ptr<sf::Font> m_upFont;
   std::shared_ptr<sf::Text> m_text;
-
-  std::shared_ptr<AssetsMenagerIf> m_spAssetsMenager;
 
   std::shared_ptr<sf::Sprite> m_upBackground;
 

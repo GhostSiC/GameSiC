@@ -1,22 +1,21 @@
 
 #include <StandardButtonBuilder.hpp>
 
-#include <AssetsMenagerIf.hpp>
+#include <AssetsMenager.hpp>
 
 #include <iostream>
 
-StandardButtonBuilder::StandardButtonBuilder(std::shared_ptr<AssetsMenagerIf> assetsMenager) :
-  m_spAssetsMenager{assetsMenager},
-  m_spDefaultFont{assetsMenager->getBasicFont()},
-  m_spDefaultTexture{assetsMenager->getBasicTexture()}
+StandardButtonBuilder::StandardButtonBuilder() :
+  m_spAssetsMenager{AssetsMenager::getInstance()},
+  m_spDefaultFont{m_spAssetsMenager.getBasicFont()},
+  m_spDefaultTexture{m_spAssetsMenager.getBasicTexture()}
 {
   std::cout << "create StandardButtonBuilder\n";
-
 }
 
 std::shared_ptr<Button> StandardButtonBuilder::build()
 {
-  std::shared_ptr<Button> button = std::make_shared<Button>(m_spAssetsMenager);
+  std::shared_ptr<Button> button = std::make_shared<Button>();
 
   button->setTexture(m_spDefaultTexture);
   button->setTextureRect(m_textureRect);

@@ -1,15 +1,12 @@
 
 #include <Button.hpp>
 
-#include <AssetsMenagerIf.hpp>
-
 #include <iostream>
 
-Button::Button(std::shared_ptr<AssetsMenagerIf> assetsMenager) :
+Button::Button() :
   m_drawableStatus{true},
   m_eventStatus{true},
-  isActiveAction{true},
-  m_spAssetsMenager{assetsMenager}
+  isActiveAction{true}
 {
   m_upBackground = std::make_shared<sf::Sprite>();
   m_upFont = std::make_shared<sf::Font>();

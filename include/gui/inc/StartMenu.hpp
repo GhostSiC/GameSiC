@@ -10,7 +10,7 @@
 #include <EventHandlerIf.hpp>
 #include <MainEngineIf.hpp>
 
-class AssetsMenagerIf;
+class AssetsMenager;
 class Button;
 class SettingsMenu;
 class StateManagerIf;
@@ -19,7 +19,7 @@ class SettingsAdvance;
 class StartMenu : public StartMenuIf, public MainEngineIf, public DrawableManagerIf, public EventHandlerIf
 {
 public:
-  StartMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std::shared_ptr<SettingsAdvance> settingsAdvance, std::shared_ptr<StateManagerIf> stateManager);
+  StartMenu(std::shared_ptr<SettingsAdvance> settingsAdvance, std::shared_ptr<StateManagerIf> stateManager);
   //~StartMenu();
   ~StartMenu() = default;
 
@@ -53,7 +53,9 @@ private:
   std::shared_ptr<sf::View> m_spView;
   
   std::vector<std::shared_ptr<Button>> m_vButtons;
-  std::shared_ptr<AssetsMenagerIf> m_spAssetsMenager;
+  //std::shared_ptr<AssetsMenagerIf> m_spAssetsMenager;
+  AssetsMenager& m_spAssetsMenager;
+  
 
 
   std::shared_ptr<SettingsMenu> up_mSettingsMenu;

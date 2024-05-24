@@ -8,7 +8,7 @@
 #include <DrawableManagerIf.hpp>
 #include <EventHandlerIf.hpp>
 
-class AssetsMenagerIf;
+class AssetsMenager;
 class StateManagerIf;
 class Button;
 class SettingsAdvance;
@@ -16,7 +16,7 @@ class SettingsAdvance;
 class SettingsMenu : public StartMenuIf, public DrawableManagerIf, public EventHandlerIf
 {
 public:
-  SettingsMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std::shared_ptr<SettingsAdvance> settingsAdvance, std::shared_ptr<StateManagerIf> stateManager);
+  SettingsMenu(std::shared_ptr<SettingsAdvance> settingsAdvance, std::shared_ptr<StateManagerIf> stateManager);
   ~SettingsMenu() = default;
 
   //void initStartMenu();
@@ -38,7 +38,7 @@ private:
   
   std::unique_ptr<std::vector<Button>> m_upButtons;
   std::vector<std::shared_ptr<Button>> m_upGraphicButtons;
-  std::shared_ptr<AssetsMenagerIf> m_spAssetsMenager;
+  AssetsMenager& m_spAssetsMenager;
 
   std::shared_ptr<SettingsAdvance> m_spSettingsAdvance;
 
