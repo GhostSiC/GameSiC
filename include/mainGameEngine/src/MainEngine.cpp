@@ -18,7 +18,6 @@ MainEngine::MainEngine() :
   m_spAssetsMenager = std::make_shared<AssetsMenager>();
 
   up_mStateGameTop = StateOfGame::NONE;
-  sp_mStateGame = std::make_shared<StateManager>(StateOfGame::MAIN_MENU);
 
   m_spSettingsAdvance = std::make_shared<SettingsAdvance>();
   
@@ -28,6 +27,7 @@ MainEngine::MainEngine() :
   shape->setFillColor(sf::Color(75,0,130));
 
 
+  sp_mStateGame = std::make_shared<StateManager>(StateOfGame::MAIN_MENU);
   std::shared_ptr<StartMenu> sp_mStartMenu = std::make_shared<StartMenu>(m_spAssetsMenager, m_spSettingsAdvance, sp_mStateGame);
   m_spDrawableManager = sp_mStartMenu;
   m_spEventHandler = sp_mStartMenu;
@@ -42,6 +42,8 @@ void MainEngine::mainLoop()
   sf::Event event;
   while (m_spWindow->isOpen())
   {
+
+    stateGame();
     //stateGame();
     //for(auto& mainLoopHandler : m_spMainLoopHandler){
     // if(m_spMainLoopHandler->getMainEngineStatus())
@@ -111,7 +113,6 @@ void MainEngine::poolEvents(sf::Event& event)
     if (event.type == sf::Event::Closed)
       m_spWindow->close();
 
-
       m_spEventHandler->poolEvents(event);
   }
 }
@@ -127,6 +128,10 @@ void MainEngine::stateGame()
       break;
     }
     case StateOfGame::GAME : {
+      std::cout << "AAAAAAAAAAAA\n";
+        m_spWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(600, 600), "SFML window");
+        m_spWindow->setView(*m_spView);
+        sp_mStateGame->addState(StateOfGame::MAIN_MENU);
         // auto sp_mStartMenu = std::make_shared<Menu>();
         // m_spDrawableManager = sp_mStartMenu;
         // m_spEventHandler = sp_mStartMenu;

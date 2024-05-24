@@ -29,6 +29,7 @@ public:
   StandardButtonBuilder& initTexture(std::shared_ptr<sf::Texture> texture, sf::IntRect&& intRect) override;
 
   StandardButtonBuilder& initCallBack(std::function<void()> callback) override;
+  StandardButtonBuilder& initActiveAction(bool active) override;
 
 
 private:
@@ -46,6 +47,7 @@ private:
   sf::Vector2f m_defaultPosition = sf::Vector2f(0,0); // initPosition
   sf::IntRect m_defaultTextureRect = sf::IntRect(0,0,397,97);
   std::function<void()> m_defaultCallback = [](){};
+  bool m_defaultActiveAction{true};
 
   // Current values
   std::shared_ptr<sf::Font> m_spFont{m_spDefaultFont}; // initFont
@@ -58,4 +60,5 @@ private:
   sf::Vector2f m_position{m_defaultPosition}; // initPosition
   sf::IntRect m_textureRect{m_defaultTextureRect};
   std::function<void()> m_callback{m_defaultCallback};
+  bool m_activeAction{m_defaultActiveAction};
 };

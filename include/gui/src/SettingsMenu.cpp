@@ -9,6 +9,7 @@
 #include <StateManager.hpp>
 #include <StateManagerIf.hpp>
 #include <SettingsAdvance.hpp>
+#include <StandardButtonBuilder.hpp>
 
 #include <iostream>
 
@@ -30,8 +31,6 @@ SettingsMenu::SettingsMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std
   sp_mStateGame{stateManager},
   sp_mStateLocal{std::make_unique<StateManager>(StateOfGame::NONE)}
 {
-  //m_upButtons = std::make_unique<std::vector<Button>>();
-
   sp_mStateLocal->addState(StateOfGame::GRAPHIC);
 
   initButton();
@@ -102,6 +101,7 @@ void SettingsMenu::graphicOption()
   {
     graphicButtons->setDrawableStatus(1);
     graphicButtons->setEventStatus(1);
+    graphicButtons->setActiveAction(1);
   }
   
   //sp_mStateGame->deleteState();
@@ -128,62 +128,48 @@ void SettingsMenu::backOption()
 
 void SettingsMenu::initButton()
 {
-  std::cout << "SettingsMenu::initButton\n";
+  StandardButtonBuilder builder{m_spAssetsMenager};
 
-  // std::shared_ptr<Button> button = std::make_shared<Button>(m_spAssetsMenager, "Powrot");
-  // button->setCallBack(std::bind(&SettingsMenu::backOption, this));
-  // button->setPosition(sf::Vector2f(SCREEN_SIZE.x/8, SCREEN_SIZE.y/8));
-  // up_mDrawableManager.emplace_back(button);
-  // up_mEventHandler.emplace_back(button);
+  std::shared_ptr<Button> button = builder
+    .initText("Powrot")
+    .initPosition(sf::Vector2f(SCREEN_SIZE.x/8, SCREEN_SIZE.y/8))
+    .initCallBack(std::bind(&SettingsMenu::backOption, this))
+    .build();
 
-  // button.reset();
+  up_mDrawableManager.emplace_back(button);
+  up_mEventHandler.emplace_back(button);
 
-  // button = std::make_shared<Button>(m_spAssetsMenager, "Grafika");
-  // button->setCallBack(std::bind(&SettingsMenu::graphicOption, this));
-  // button->setPosition(sf::Vector2f((SCREEN_SIZE.x/8) * 5, SCREEN_SIZE.y/8));
+  button = builder
+    .initText("Grafika")
+    .initPosition(sf::Vector2f((SCREEN_SIZE.x/8) * 5, SCREEN_SIZE.y/8))
+    .initCallBack(std::bind(&SettingsMenu::graphicOption, this))
+    .build();
 
-  // up_mDrawableManager.emplace_back(button);
-  // up_mEventHandler.emplace_back(button);
+  up_mDrawableManager.emplace_back(button);
+  up_mEventHandler.emplace_back(button);
 
-  // button.reset();
+  button = builder
+    .initText("Dzwiek")
+    .initPosition(sf::Vector2f((SCREEN_SIZE.x/8) * 3, SCREEN_SIZE.y/8))
+    .initCallBack(std::bind(&SettingsMenu::soundOption, this))
+    .build();
 
-  // button = std::make_shared<Button>(m_spAssetsMenager, "Dzwiek");
-  // button->setCallBack(std::bind(&SettingsMenu::soundOption, this));
-  // button->setPosition(sf::Vector2f((SCREEN_SIZE.x/8) * 3, SCREEN_SIZE.y/8));
-  
-  // up_mDrawableManager.emplace_back(button);
-  // up_mEventHandler.emplace_back(button);
-
+  up_mDrawableManager.emplace_back(button);
+  up_mEventHandler.emplace_back(button);
 }
 
 void SettingsMenu::initGraphicButton()
 {
-  // m_upGraphicButtons.push_back(std::make_shared<Button>(m_spAssetsMenager, "resolution"));
-  // m_upGraphicButtons.back()->setDrawableStatus(0);
-  // m_upGraphicButtons.back()->setEventStatus(0);
-  // m_upGraphicButtons.back()->setCallBack(std::bind(&SettingsAdvance::changeResolution , m_spSettingsAdvance));
-  // m_upGraphicButtons.back()->setPosition(sf::Vector2f(SCREEN_SIZE.x/2, SCREEN_SIZE.y/2));
+  StandardButtonBuilder builder{m_spAssetsMenager};
 
-  // up_mDrawableManager.emplace_back(m_upGraphicButtons.back());
-  // up_mEventHandler.emplace_back(m_upGraphicButtons.back());
+  std::shared_ptr<Button> button = builder
+    .initText("resolution")
+    .initPosition(sf::Vector2f(SCREEN_SIZE.x/2, SCREEN_SIZE.y/2))
+    .initCallBack(std::bind(&SettingsAdvance::changeResolution, m_spSettingsAdvance))
+    .initActiveAction(false)
+    .build();
 
-  // button.reset();
-
-  // button = std::make_shared<Button>(m_spAssetsMenager, "Grafika");
-  // button->setCallBack(std::bind(&SettingsMenu::graphicOption, this));
-  // button->setPosition(sf::Vector2f((SCREEN_SIZE.x/8) * 5, SCREEN_SIZE.y/8));
-
-  // up_mDrawableManager.emplace_back(button);
-  // up_mEventHandler.emplace_back(button);
-
-  // button.reset();
-
-  // button = std::make_shared<Button>(m_spAssetsMenager, "Dzwiek");
-  // button->setCallBack(std::bind(&SettingsMenu::soundOption, this));
-  // button->setPosition(sf::Vector2f((SCREEN_SIZE.x/8) * 3, SCREEN_SIZE.y/8));
-  
-  // up_mDrawableManager.emplace_back(button);
-  // up_mEventHandler.emplace_back(button);
-
+  m_upGraphicButtons.push_back(button);
+  up_mDrawableManager.emplace_back(button);
+  up_mEventHandler.emplace_back(button);
 }
-

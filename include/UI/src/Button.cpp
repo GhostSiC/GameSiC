@@ -26,7 +26,7 @@ Button::~Button()
 
 void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-  if(m_drawableStatus)
+  if(isActiveAction && m_drawableStatus)
   {
     target.draw(*m_upBackground);
     target.draw(*m_text);
@@ -51,7 +51,7 @@ void Button::setTextureRect(const sf::IntRect& intRect)
 
 void Button::poolEvents(sf::Event &event)
 {
-  if(isActiveAction)
+  if(isActiveAction ) //&& m_eventStatus
   {
   sf::Vector2f mousePosition = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
     if (getGlobalBounds().contains(mousePosition))

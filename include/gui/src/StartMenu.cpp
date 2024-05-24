@@ -15,11 +15,9 @@
 #include <SettingsMenu.hpp>
 #include <Button.hpp>
 #include <SettingsAdvance.hpp>
+#include <StandardButtonBuilder.hpp>
 
 #include <iostream>
-
-
-#include <StandardButtonBuilder.hpp>
 
 StartMenu::StartMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std::shared_ptr<SettingsAdvance> settingsAdvance, std::shared_ptr<StateManagerIf> stateManager) :
   m_drawableStatus{false},
@@ -144,8 +142,8 @@ void StartMenu::startNewGame()
 {
   std::cout << "start game\n";
   std::cout << "start game click\n";
-  //sp_mStateGame->deleteState();
-  //sp_mStateGame->addState(StateOfGame::GAME);
+  //sp_mStateGame->pop();
+  sp_mStateGame->addState(StateOfGame::GAME);
   //m_vButtons.back()->setText("test") ;
 }
 

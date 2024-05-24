@@ -28,6 +28,9 @@ std::shared_ptr<Button> StandardButtonBuilder::build()
   button->setScale(m_scale);
   button->setPosition(m_position);
   button->setCallBack(m_callback);
+  button->setActiveAction(m_activeAction);
+  button->setDrawableStatus(m_activeAction);
+  button->setEventStatus(m_activeAction);
 
   reset();
   return button;
@@ -41,6 +44,7 @@ void StandardButtonBuilder::reset()
   m_position = m_defaultPosition;
   m_textureRect = m_defaultTextureRect;
   m_callback = m_defaultCallback;
+  m_activeAction = m_defaultActiveAction;
 }
 
 StandardButtonBuilder& StandardButtonBuilder::initFont(std::shared_ptr<sf::Font> font)
@@ -90,4 +94,10 @@ StandardButtonBuilder &StandardButtonBuilder::initCallBack(std::function<void()>
 {
     m_callback = callback;
     return *this;
+}
+
+StandardButtonBuilder &StandardButtonBuilder::initActiveAction(bool active)
+{
+  m_activeAction = active;
+  return *this;
 }

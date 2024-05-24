@@ -16,6 +16,7 @@ SettingsAdvance::SettingsAdvance()
 void SettingsAdvance::changeResolution()
 {
   std::cout << "changeResolution\n";
+  
 }
 
 // StartMenu::~StartMenu()

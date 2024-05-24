@@ -25,6 +25,8 @@ public:
   virtual ButtonBuilderIf& initTexture(std::shared_ptr<sf::Texture> texture, sf::IntRect&& intRect) = 0;
 
   virtual ButtonBuilderIf& initCallBack(std::function<void()>) = 0;
+  virtual ButtonBuilderIf& initActiveAction(bool) = 0;
+
 
   //virtual void setTexture(std::string&& text) = 0;
 };
