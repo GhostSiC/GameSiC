@@ -12,4 +12,4 @@ target_include_directories(gui PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>
 )
 
-target_link_libraries(gui PUBLIC sfml-audio UI mainEngine)
+target_link_libraries(gui PUBLIC sfml-audio utils UI mainEngine)

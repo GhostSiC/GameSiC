@@ -3,8 +3,6 @@
 add_library(
     mainEngine
     src/MainEngine.cpp
-    src/AssetsMenager.cpp
-    src/StateManager.cpp
 )
 
 #add_executable(mainEngine src/MainEngine.cpp)
@@ -18,4 +16,4 @@ target_include_directories(mainEngine PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>
 )
 
-target_link_libraries(mainEngine PUBLIC sfml-audio city UI gui)
+target_link_libraries(mainEngine PUBLIC sfml-audio utils city UI gui)
