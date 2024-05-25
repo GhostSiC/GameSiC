@@ -23,10 +23,10 @@
 //   };
 // }
 
-SettingsMenu::SettingsMenu(std::shared_ptr<SettingsAdvance> settingsAdvance, std::shared_ptr<StateManagerIf> stateManager) :
+SettingsMenu::SettingsMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std::shared_ptr<SettingsAdvance> settingsAdvance, std::shared_ptr<StateManagerIf> stateManager) :
   m_drawableStatus{false},
   m_eventStatus{false},
-  m_spAssetsMenager{AssetsMenager::getInstance()},
+  m_spAssetsMenager{spAssetsMenager},
   m_spSettingsAdvance{settingsAdvance},
   sp_mStateGame{stateManager},
   sp_mStateLocal{std::make_unique<StateManager>(StateOfGame::NONE)}
@@ -128,7 +128,7 @@ void SettingsMenu::backOption()
 
 void SettingsMenu::initButton()
 {
-  StandardButtonBuilder builder{};
+  StandardButtonBuilder builder{m_spAssetsMenager};
 
   std::shared_ptr<Button> button = builder
     .initText("Powrot")
@@ -160,7 +160,7 @@ void SettingsMenu::initButton()
 
 void SettingsMenu::initGraphicButton()
 {
-  StandardButtonBuilder builder{};
+  StandardButtonBuilder builder{m_spAssetsMenager};
 
   std::shared_ptr<Button> button = builder
     .initText("resolution")

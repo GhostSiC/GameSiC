@@ -15,6 +15,7 @@
 
 class Menu;
 class StartMenu; 
+class AssetsMenager;
 class StateManagerIf;
 
 
@@ -57,6 +58,8 @@ private:
   std::shared_ptr<MainEngineIf> m_spMainLoopHandler;
 
   std::shared_ptr<SettingsAdvance> m_spSettingsAdvance;
+
+  std::shared_ptr<AssetsMenager> m_spAssetsMenager;
 
   std::shared_ptr<StateManagerIf> sp_mStateGame;
   StateOfGame up_mStateGameTop;

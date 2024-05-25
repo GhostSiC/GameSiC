@@ -2,9 +2,6 @@
 
 #include <iostream>
 
-std::unique_ptr<AssetsMenager> AssetsMenager::instance = nullptr;
-std::once_flag AssetsMenager::initFlag;
-
 AssetsMenager::AssetsMenager()
 {
   m_upMainFont = std::make_shared<sf::Font>();
@@ -12,12 +9,6 @@ AssetsMenager::AssetsMenager()
 
   loadBasicFont();
   loadBasicTexture();
-}
-
-AssetsMenager& AssetsMenager::getInstance()
-{
-  std::call_once(initFlag, initSingleton);
-  return *instance;
 }
 
 void AssetsMenager::loadBasicFont()
@@ -46,9 +37,4 @@ std::shared_ptr<sf::Font> AssetsMenager::getBasicFont()
 std::shared_ptr<sf::Texture> AssetsMenager::getBasicTexture()
 {
   return m_texture;
-}
-
-void AssetsMenager::initSingleton()
-{
-  instance.reset(new AssetsMenager());
 }

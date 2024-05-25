@@ -3,6 +3,8 @@
 add_library(
     mainEngine
     src/MainEngine.cpp
+    src/AssetsMenager.cpp
+    src/StateManager.cpp
 )
 
 #add_executable(mainEngine src/MainEngine.cpp)

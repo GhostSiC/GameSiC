@@ -3,7 +3,6 @@ add_subdirectory(mainGameEngine)
 add_subdirectory(UI)
 add_subdirectory(gui)
 add_subdirectory(city)
-add_subdirectory(utils)
 
 #target_include_directories(mainEngine PUBLIC 
 #    $<INSTALL_INTERFACE:mainGameEngine>

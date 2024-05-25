@@ -7,12 +7,12 @@
 
 #include <Button.hpp>
 
-class AssetsMenager;
+class AssetsMenagerIf;
 
 class StandardButtonBuilder : public ButtonBuilderIf
 {
 public:
-  StandardButtonBuilder();
+  StandardButtonBuilder(std::shared_ptr<AssetsMenagerIf> assetsMenager);
   ~StandardButtonBuilder() = default;
 
   std::shared_ptr<Button> build() override;
@@ -33,7 +33,8 @@ public:
 
 
 private:
-  AssetsMenager& m_spAssetsMenager;
+
+  std::shared_ptr<AssetsMenagerIf> m_spAssetsMenager;
 
   //Default value
   std::shared_ptr<sf::Font> m_spDefaultFont;
