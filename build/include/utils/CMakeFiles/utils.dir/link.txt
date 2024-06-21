@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\llvm-ar.exe qc libutils.a CMakeFiles/utils.dir/src/AssetsMenager.cpp.obj CMakeFiles/utils.dir/src/StateManager.cpp.obj
+C:\msys64\mingw64\bin\llvm-ranlib.exe libutils.a

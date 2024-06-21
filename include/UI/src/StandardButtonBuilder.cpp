@@ -10,8 +10,6 @@ StandardButtonBuilder::StandardButtonBuilder(std::shared_ptr<AssetsMenagerIf> as
   m_spDefaultFont{assetsMenager->getBasicFont()},
   m_spDefaultTexture{assetsMenager->getBasicTexture()}
 {
-  std::cout << "create StandardButtonBuilder\n";
-
 }
 
 std::shared_ptr<Button> StandardButtonBuilder::build()

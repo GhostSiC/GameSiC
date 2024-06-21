@@ -1,5 +1,6 @@
 
 add_subdirectory(mainGameEngine)
+add_subdirectory(settings)
 add_subdirectory(utils)
 add_subdirectory(UI)
 add_subdirectory(gui)

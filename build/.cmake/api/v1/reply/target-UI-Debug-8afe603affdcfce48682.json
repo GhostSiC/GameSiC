@@ -1,0 +1,163 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "include/UI/libUI.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"include/UI/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 3,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 20,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "SFML_STATIC"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "D:/cpp/Game/GameSiC/include/UI/export"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "D:/cpp/Game/GameSiC/include/UI/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "D:/cpp/Game/GameSiC/include/utils/export"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "D:/cpp/Game/GameSiC/include/utils/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "D:/cpp/Game/GameSiC/include/mainGameEngine/export"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "D:/cpp/Game/GameSiC/include/mainGameEngine/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "D:/cpp/Game/GameSiC/include/city/export"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "D:/cpp/Game/GameSiC/include/city/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "D:/cpp/Game/GameSiC/include/gui/export"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "D:/cpp/Game/GameSiC/include/gui/inc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "D:/cpp/Game/GameSiC/include/settings/export"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "D:/cpp/Game/GameSiC/include/settings/inc"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				1
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"id" : "gui::@2f237cca86d5e710de1f"
+		}
+	],
+	"id" : "UI::@d013e2e5955e67f7a4fb",
+	"name" : "UI",
+	"nameOnDisk" : "libUI.a",
+	"paths" : 
+	{
+		"build" : "include/UI",
+		"source" : "include/UI"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "include/UI/src/Button.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "include/UI/src/StandardButtonBuilder.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

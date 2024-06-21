@@ -3,15 +3,18 @@
 
 #include <memory>
 
+class SettingsWindowIf;
+
 class SettingsAdvance : public SettingsAdvanceIf
 {
 public:
-  SettingsAdvance();
+  SettingsAdvance(std::shared_ptr<SettingsWindowIf> settingsWindow);
   ~SettingsAdvance() = default;
 
-  void changeResolution() override;
+  void changeWindowResolution() override;
+  void applyWindowChanges() override;
 
 private:
 
-  
+  std::shared_ptr<SettingsWindowIf> m_spSettingsWindow;
 };

@@ -27,10 +27,11 @@ StartMenu::StartMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std::shar
   m_spAssetsMenager{spAssetsMenager},
   sp_mStateGame{stateManager}
 {
-  std::cout << "Create StartMen\n";
+  std::cout << "Create StartMenu\n";
   //m_upButtons = std::make_unique<std::vector<Button>>();
   //sp_mStateMenu = std::make_unique<StateManagerIf>(StateOfGame::MAIN_MENU);
   sp_mLocalState->addState(StateOfGame::MAIN_MENU);
+
 
 
   up_mSettingsMenu = std::make_shared<SettingsMenu>(spAssetsMenager, settingsAdvance, sp_mLocalState);
@@ -69,7 +70,9 @@ void StartMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
     }
   }
   for(auto& drawableInstance : up_mDrawableInstanceManager){
+    //std::cout << "drawableInstance->getDrawableStatus() \n";
     if(drawableInstance->getDrawableStatus()){
+      //std::cout << "drawableInstance->getDrawableStatus() after\n";
       drawableInstance->draw(target, states);
     }
   }
@@ -77,7 +80,6 @@ void StartMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 void StartMenu::poolEvents(sf::Event& event)
 {
-  //std::cout << "poolEvents isActive:" << isActive << '\n';
   if(m_eventStatus)
   {
     sf::Vector2f mousePosition = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
@@ -200,7 +202,7 @@ void StartMenu::checkState(){
   case StateOfGame::MAIN_MENU:
   {
     setStatus(1);
-    
+    // std::cout << "checkState: MAIN_MENU\n";
     break;
   }
   case StateOfGame::SettingsMenu : 
@@ -209,6 +211,7 @@ void StartMenu::checkState(){
     up_mSettingsMenu->setEventStatus(1);
     setDrawableStatus(0);
     setEventStatus(0);
+    std::cout << "checkState: SettingsMenu\n";
     break;
   }
   default:

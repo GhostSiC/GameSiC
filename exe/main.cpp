@@ -6,6 +6,7 @@
 int main()
 {
     std::unique_ptr<MainEngine> mainEngine = std::make_unique<MainEngine>();
+    mainEngine->mainLoop();
 
     return 0;
 }
