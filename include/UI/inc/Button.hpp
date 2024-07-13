@@ -15,8 +15,8 @@ class Button : public ButtonIf, public DrawableManagerIf, public EventHandlerIf
 {
 public:
   Button(std::shared_ptr<AssetsMenagerIf> assetsMenager);
-  //~Button();
-  ~Button() = default;
+  ~Button();
+  //~Button() = default;
 
 
   // ButtonIf

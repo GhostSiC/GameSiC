@@ -1,2 +1,0 @@
-C:\msys64\mingw64\bin\llvm-ar.exe qc libgui.a CMakeFiles/gui.dir/src/StartMenu.cpp.obj CMakeFiles/gui.dir/src/SettingsMenu.cpp.obj CMakeFiles/gui.dir/src/SettingsAdvance.cpp.obj
-C:\msys64\mingw64\bin\llvm-ranlib.exe libgui.a

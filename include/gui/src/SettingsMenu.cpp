@@ -13,8 +13,6 @@
 
 #include <iostream>
 
-
-
 // namespace
 // {
 //   enum class StateOfSettingsMenu : int16_t
@@ -34,8 +32,6 @@ SettingsMenu::SettingsMenu(std::shared_ptr<AssetsMenagerIf> spAssetsMenager, std
   sp_mStateLocal{std::make_unique<StateManager>(StateOfGame::NONE)}
 {
   sp_mStateLocal->addState(StateOfGame::GRAPHIC);
-
-
 
   initButton();
   initGraphicButton();
@@ -169,17 +165,6 @@ void SettingsMenu::initGraphicButton()
   std::shared_ptr<Button> button = builder
     .initText("resolution")
     .initPosition(sf::Vector2f(SCREEN_SIZE.x/2, SCREEN_SIZE.y/2))
-    .initCallBack(std::bind(&SettingsAdvance::changeResolution, m_spSettingsAdvance))
-    .initActiveAction(false)
-    .build();
-
-  m_upGraphicButtons.push_back(button);
-  up_mDrawableManager.emplace_back(button);
-  up_mEventHandler.emplace_back(button);
-
-  button = builder
-    .initText("apply")
-    .initPosition(sf::Vector2f(SCREEN_SIZE.x/2, SCREEN_SIZE.y/3 * 2))
     .initCallBack(std::bind(&SettingsAdvance::changeResolution, m_spSettingsAdvance))
     .initActiveAction(false)
     .build();

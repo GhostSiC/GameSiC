@@ -12,21 +12,14 @@
 #include <StateConst.hpp>
 
 #include <SettingsAdvance.hpp>
-#include <SettingsObserverIf.hpp>
 
 class Menu;
 class StartMenu; 
 class AssetsMenager;
 class StateManagerIf;
-//class SettingsObserverIf;
-class Settings;
-
-namespace Config{
-    struct WindowData;
-};
 
 
-class MainEngine : public MainEngineIf, public DrawableManagerIf, public EventHandlerIf, public SettingsObserverIf, public std::enable_shared_from_this<MainEngine>
+class MainEngine : public MainEngineIf, public DrawableManagerIf, public EventHandlerIf
 {
 public:
   MainEngine();
@@ -50,9 +43,6 @@ public:
 
   void poolEvents(sf::Event& event) override;
 
-
-  void updateSettings(std::shared_ptr<Config::WindowData>) override;
-
 protected:
 
 private:
@@ -68,7 +58,6 @@ private:
   std::shared_ptr<MainEngineIf> m_spMainLoopHandler;
 
   std::shared_ptr<SettingsAdvance> m_spSettingsAdvance;
-  std::shared_ptr<Settings> m_spSettings;
 
   std::shared_ptr<AssetsMenager> m_spAssetsMenager;
 

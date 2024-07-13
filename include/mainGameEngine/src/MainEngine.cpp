@@ -1,37 +1,26 @@
 #include <MainEngine.hpp>
 
 #include <StartMenu.hpp>
-// #include <StartMenuView.hpp>
 #include <AssetsMenager.hpp>
 #include <StateManager.hpp>
-// #include <SettingsObserverIf.hpp>
-// #include "ConfigData.cpp"
-
-#include <ConfigData.hpp>
 
 #include <iostream>
-
-
-#include <Settings.hpp>
 
 MainEngine::MainEngine() :
   m_drawableStatus{true},
   m_eventStatus{true},
   m_mainEngineStatus{true}
 {
-  m_spWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "SFML window"); // 820, 640
+  m_spWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "SFML window");
   m_spView = std::make_shared<sf::View>(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
   m_spWindow->setView(*m_spView);
-
 
   m_spAssetsMenager = std::make_shared<AssetsMenager>();
 
   up_mStateGameTop = StateOfGame::NONE;
 
-  m_spSettings = std::make_shared<Settings>();
-  m_spSettings->registerObserver(this);
-  m_spSettingsAdvance = std::make_shared<SettingsAdvance>(m_spSettings);
-
+  m_spSettingsAdvance = std::make_shared<SettingsAdvance>();
+  
 
   shape = std::make_shared<sf::RectangleShape>(sf::Vector2f(2000.f, 2000.f));
   
@@ -55,6 +44,7 @@ void MainEngine::mainLoop()
   {
 
     stateGame();
+    //stateGame();
     //for(auto& mainLoopHandler : m_spMainLoopHandler){
     // if(m_spMainLoopHandler->getMainEngineStatus())
     // {
@@ -127,20 +117,8 @@ void MainEngine::poolEvents(sf::Event& event)
   }
 }
 
-void MainEngine::updateSettings(std::shared_ptr<Config::WindowData> windowData) // TODO: pomysl czy to ma shared_ptr, unique czy specjalna klasa ktora ma pola tylko zmodyfikowane
-{
-  std::cout << "MainEngine::updateSettings\n";
-  
-  if(m_spWindow->getSize() != sf::Vector2u(windowData->resolutionWidth, windowData->resolutionHeight)){
-    m_spWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(windowData->resolutionWidth, windowData->resolutionHeight), "SFML window");
-    m_spWindow->setView(*m_spView);
-  }
-}
-
 void MainEngine::stateGame()
 {
-  
-
   if(auto stateGameTop = sp_mStateGame->getState().top(); stateGameTop != up_mStateGameTop){
     switch (stateGameTop)
     {
@@ -151,9 +129,9 @@ void MainEngine::stateGame()
     }
     case StateOfGame::GAME : {
       std::cout << "AAAAAAAAAAAA\n";
-        
+        m_spWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(600, 600), "SFML window");
+        m_spWindow->setView(*m_spView);
         sp_mStateGame->addState(StateOfGame::MAIN_MENU);
-
         // auto sp_mStartMenu = std::make_shared<Menu>();
         // m_spDrawableManager = sp_mStartMenu;
         // m_spEventHandler = sp_mStartMenu;

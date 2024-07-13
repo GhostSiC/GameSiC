@@ -15,12 +15,14 @@ Button::Button(std::shared_ptr<AssetsMenagerIf> assetsMenager) :
   m_upFont = std::make_shared<sf::Font>();
 
   m_text = std::make_shared<sf::Text>();
+
+  std::cout << "create button\n";
 }
 
-// Button::~Button()
-// {
-//   std::cout << "delete button\n";
-// }
+Button::~Button()
+{
+  std::cout << "delete button\n";
+}
 
 void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {

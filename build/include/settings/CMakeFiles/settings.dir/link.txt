@@ -1,2 +1,0 @@
-C:\msys64\mingw64\bin\llvm-ar.exe qc libsettings.a CMakeFiles/settings.dir/src/Settings.cpp.obj CMakeFiles/settings.dir/src/ReadSettingFile.cpp.obj
-C:\msys64\mingw64\bin\llvm-ranlib.exe libsettings.a
